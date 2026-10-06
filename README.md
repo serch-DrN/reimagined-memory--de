@@ -30,19 +30,16 @@ Los cambios se guardan automáticamente en el almacenamiento del navegador. No s
 
 Pulsa **Exportar respaldo** para descargar un archivo JSON. Hazlo cada semana y antes de cambiar de equipo. Para recuperarlo, pulsa **Importar**, elige el archivo y confirma. **Importar reemplaza todo el contenido actual**, no lo combina: exporta antes para conservarlo. Un archivo inválido se rechaza sin modificar tus datos. El respaldo contiene tu información personal: guárdalo en un lugar privado.
 
-## Publicación en internet
+## Publicación privada en internet
 
-Esta versión es un sitio estático: puedes publicarla gratis en GitHub Pages.
+La opción preparada para acceso exclusivo es **Cloudflare Workers + Cloudflare Access**, con autorización en el servidor para todos los archivos. No uses GitHub Pages para este objetivo: la versión normal es pública.
 
-1. Sube los archivos del proyecto a la rama `main` de tu repositorio.
-2. En GitHub, entra en **Settings → Pages**.
-3. Selecciona **Deploy from a branch**, rama `main` y carpeta `/ (root)`, y guarda.
-4. Espera a que GitHub muestre la dirección del sitio y ábrela.
+**Antes de cambiar de alojamiento, pulsa Exportar respaldo en la dirección donde usas la aplicación.** Los datos no se trasladan automáticamente a otra dirección.
 
-GitHub Pages debe estar disponible para la visibilidad y el plan del repositorio. No se ha publicado automáticamente. El sitio y el código serán accesibles según la configuración de GitHub, pero tus datos personales permanecen en tu navegador. Al pasar de la versión local a la publicada, exporta e importa un respaldo porque son ubicaciones diferentes. La publicación no añade cuentas ni sincronización.
+Sigue [la guía de acceso privado](PRIVACIDAD.md), que explica las cuentas necesarias, la configuración, la desactivación de Pages, la importación del respaldo y cómo probar el rechazo de visitantes. El código está preparado, pero la publicación privada requiere configurar tu cuenta Cloudflare y tu proveedor de identidad. No se considera activa ni verificada hasta completar las pruebas en el alojamiento real.
 
 ## Detalles técnicos
 
-HTML, CSS y JavaScript sin dependencias de producción. `app.js` usa `localStorage` con la clave `camino-neurocirugia-v1` y respaldo JSON con versión 1. No hay servidor de datos ni solicitudes a APIs. No se incluyen afirmaciones sobre requisitos o actividad hospitalaria. El diseño se adapta a celular y computadora.
+La interfaz usa HTML, CSS y JavaScript sin dependencias. El alojamiento privado añade un Worker que usa `jose` para verificar identidad; Wrangler es la herramienta de despliegue. `app.js` usa `localStorage` con la clave `camino-neurocirugia-v1` y respaldo JSON con versión 1. No hay servidor de datos ni solicitudes a APIs. No se incluyen afirmaciones sobre requisitos o actividad hospitalaria. El diseño se adapta a celular y computadora.
 
 Comprobación de sintaxis: `node --check app.js`. Para una prueba funcional, abre el sitio, crea y edita una tarea, recarga, exporta e importa el respaldo, y comprueba las demás secciones.
